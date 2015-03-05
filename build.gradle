@@ -1,0 +1,74 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1"
+    }
+}
+
+ext.publish = false
+
+subprojects {
+    group = 'org.galaxx.gradle'
+
+    apply plugin: 'groovy'
+    apply plugin: 'com.jfrog.bintray'
+
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        published
+    }
+
+    dependencies {
+        compile gradleApi()
+        compile localGroovy()
+    }
+
+    jar {
+        manifest {
+            attributes(
+                    'Built-By': "Gradle ${gradle.gradleVersion}",
+                    'Built-With-JVM-Version': "${org.gradle.internal.jvm.Jvm.current()}",
+                    'Implementation-Title': "${project.group}.${project.name}",
+                    'Implementation-Version': "${project.version}",
+                    'Implementation-Vendor': 'Galaxx.org'
+            )
+        }
+    }
+
+    ext.publish = true
+    bintray {
+        user = bintray_user
+        key = bintray_key
+        configurations = ['published', 'archives']
+        //publications = ['published']
+        filesSpec {
+            from 'files'
+            into 'standalone_files/level1'
+            rename '(.+)\\.(.+)', '$1-suffix.$2'
+        }
+        publish = project.publish
+        pkg {
+            repo = 'maven'
+            //userOrg = 'myorg'
+            name = project.group + '.' + project.name
+            desc = ''
+            websiteUrl = 'https://github.com/kiddidan/org.galaxx.gradle'
+            issueTrackerUrl = 'https://github.com/kiddidan/org.galaxx.gradle/issues'
+            vcsUrl = 'https://github.com/kiddidan/org.galaxx.gradle.git'
+            licenses = ['Apache-2.0']
+            labels = []
+            //attributes= []
+            publicDownloadNumbers = false
+            version {
+                name = project.version //Optional logical version name
+                vcsTag = project.version
+            }
+        }
+    }
+}
