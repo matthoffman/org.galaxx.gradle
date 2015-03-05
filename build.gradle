@@ -12,6 +12,7 @@ ext.publish = false
 
 subprojects {
     group = 'org.galaxx.gradle'
+    version = '1.0.0'
 
     apply plugin: 'groovy'
     apply plugin: 'com.jfrog.bintray'
