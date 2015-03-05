@@ -15,6 +15,7 @@ subprojects {
     version = '1.0.0'
 
     apply plugin: 'groovy'
+    apply plugin: 'maven'
     apply plugin: 'com.jfrog.bintray'
 
     repositories {
@@ -40,6 +41,21 @@ subprojects {
                     'Implementation-Vendor': 'Galaxx.org'
             )
         }
+    }
+
+    task sourceJar(type: Jar) {
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+        classifier = 'javadoc'
+        from javadoc.destinationDir
+    }
+
+    // Add the sourceJars to non-extractor modules
+    artifacts {
+        published sourceJar
+        published javadocJar
     }
 
     ext.publish = true
