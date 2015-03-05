@@ -85,6 +85,7 @@ subprojects {
             version {
                 name = project.version //Optional logical version name
                 vcsTag = project.version
+                attributes = ['gradle-plugin': "${project.group}.${project.name}:${project.group}:${project.name}"]
             }
         }
     }
