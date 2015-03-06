@@ -36,4 +36,4 @@ apply plugin: "org.galaxx.gradle.jandex"
 With this basic configuration in place, each time you generate a jar it will contain Jandex index.
 
 [1]: https://github.com/wildfly/jandex
-[2]: http://plugins.gradle.org/plugin/io.spring.dependency-management
+[2]: http://plugins.gradle.org/plugin/org.galaxx.gradle.jandex
