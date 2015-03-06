@@ -75,9 +75,9 @@ subprojects {
             //userOrg = 'myorg'
             name = project.group + '.' + project.name
             desc = 'Gradle plugin to generate Jandex index files'
-            websiteUrl = 'https://github.com/kiddidan/org.galaxx.gradle'
-            issueTrackerUrl = 'https://github.com/kiddidan/org.galaxx.gradle/issues'
-            vcsUrl = 'https://github.com/kiddidan/org.galaxx.gradle.git'
+            websiteUrl = 'https://github.com/galaxx-org/org.galaxx.gradle'
+            issueTrackerUrl = 'https://github.com/galaxx-org/org.galaxx.gradle/issues'
+            vcsUrl = 'https://github.com/galaxx-org/org.galaxx.gradle.git'
             licenses = ['Apache-2.0']
             labels = ['gradle', 'jandex', 'weld', 'hibernate']
             attributes = ['gradle-plugin': "${project.group}.${project.name}:${project.group}:${project.name}"]
